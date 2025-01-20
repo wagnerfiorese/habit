@@ -1,0 +1,121 @@
+/* Estilização geral da página */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Ajuste na lista para alinhar e centralizar os cards */
+ul {
+  list-style-type: none; /* Remove os bullet points */
+  padding: 0; /* Remove espaçamento padrão */
+  margin: 0 auto; /* Centraliza os elementos */
+  max-width: 600px; /* Define uma largura máxima */
+}
+
+/* Estilização dos cards de hábito */
+.habit-card {
+  background-color: #f4f4f4;  /* Cor de fundo */
+  border: 1px solid #ddd;      /* Borda sutil */
+  border-radius: 8px;          /* Cantos arredondados */
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+  padding: 15px;               /* Espaçamento interno */
+  margin: 15px 20px;            /* Espaçamento nas laterais */
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.habit-card:hover {
+  transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+}
+
+.habit-card strong {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.habit-card p {
+  font-size: 1em;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Estilo para hábitos ativos */
+.habit-active {
+  background-color: #e0ffe0;  /* Verde claro */
+  border-left: 5px solid #4caf50;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+/* Botões */
+button {
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.start-btn {
+  background-color: #4caf50;  /* Verde para iniciar */
+}
+
+.start-btn:hover {
+  background-color: #45a049;
+}
+
+.end-btn {
+  background-color: #ff4d4d;  /* Vermelho para finalizar */
+}
+
+.end-btn:hover {
+  background-color: #e60000;
+}
+
+.habit-duration {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+/* Input de adição de hábito */
+.input-container {
+  margin-top: 10px;
+  text-align: center;
+  margin-left: 20px; /* Ajusta mais para a direita */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-container input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 250px;
+}
+
+.input-container button {
+  background-color: #2196F3;
+}
+
+.input-container button:hover {
+  background-color: #1976D2;
+}
+
+/* Ajuste do título */
+h1 {
+  text-align: center;
+  margin-left: 20px; /* Ajusta mais para a direita */
+}
