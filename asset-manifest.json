@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/https://wagnerfiorese.github.io/habit/static/css/main.7cf21d73.css",
-    "main.js": "/https://wagnerfiorese.github.io/habit/static/js/main.d3efdf1c.js",
-    "index.html": "/https://wagnerfiorese.github.io/habit/index.html",
-    "main.7cf21d73.css.map": "/https://wagnerfiorese.github.io/habit/static/css/main.7cf21d73.css.map",
-    "main.d3efdf1c.js.map": "/https://wagnerfiorese.github.io/habit/static/js/main.d3efdf1c.js.map"
+    "main.css": "/habit/static/css/main.7cf21d73.css",
+    "main.js": "/habit/static/js/main.d3efdf1c.js",
+    "index.html": "/habit/index.html",
+    "main.7cf21d73.css.map": "/habit/static/css/main.7cf21d73.css.map",
+    "main.d3efdf1c.js.map": "/habit/static/js/main.d3efdf1c.js.map"
   },
   "entrypoints": [
     "static/css/main.7cf21d73.css",
