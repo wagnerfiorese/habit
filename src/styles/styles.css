@@ -7,16 +7,43 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   min-height: 100vh;
   max-width: 100%;
   overflow-x: hidden;
+}
+
+/* Estilização do cabeçalho */
+header {
+  background-color: #ffeb3b;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 10px 0; /* Reduzido pela metade */
+  font-size: 1.2em;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.fun-header h1 {
+  animation: fadeInOut 5s infinite;
+}
+
+/* Animação de troca de frases */
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* Ajuste na lista para alinhar e centralizar os cards */
 ul {
   list-style-type: none; /* Remove os bullet points */
   padding: 0; /* Remove espaçamento padrão */
-  margin: 0 auto; /* Centraliza os elementos */
+  margin: 80px auto 0; /* Centraliza os elementos e deixa espaço para o cabeçalho */
   max-width: 1000px; /* Define uma largura máxima */
   display: flex;
   flex-wrap: wrap;
@@ -132,7 +159,6 @@ button {
 /* Ajuste do título */
 h1 {
   text-align: center;
-  margin-left: 20px; /* Ajusta mais para a direita */
 }
 
 /* Estilo do botão de Adicionar Habit */
@@ -154,6 +180,12 @@ h1 {
 
 .add-habit-btn:hover {
   background-color: #45a049;
+}
+
+.calendar-container{
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
 }
 
 /* Responsividade para dispositivos móveis */
