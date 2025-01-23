@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import '../styles/styles.css'; // Importando o arquivo de estilos
 
 function Home() {
@@ -8,7 +8,7 @@ function Home() {
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
   const [quotesIndex, setQuotesIndex] = useState(0);
 
-  const funnyQuotes = [
+  const funnyQuotes = useMemo(() => [
     "\"So I'm breaking the rabit... tonight!\" - Linkin Park",
     "Don't be a lazy rabit, build a new habit!",
     "A good habit is like a smart rabit—fast and consistent!",
@@ -25,7 +25,7 @@ function Home() {
     "Stay on track, or your habits will rabit away!",
     "Good habits grow like rabits—quick and steady!",
     "No need to race like a rabit, just build habits step by step!"
-  ];
+  ], []);
 
   // Carregar hábitos salvos ao iniciar
   useEffect(() => {
@@ -46,7 +46,7 @@ function Home() {
     }, 5000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [funnyQuotes]);
 
   const handleAddHabit = () => {
     if (newHabit.trim() !== '') {
