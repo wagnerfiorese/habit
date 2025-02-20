@@ -1,4 +1,3 @@
-/* Estilização geral da página */
 body {
   font-family: Arial, sans-serif;
   background-color: #f0f0f0;
@@ -13,51 +12,24 @@ body {
   overflow-x: hidden;
 }
 
-/* Estilização do cabeçalho */
-header {
-  background-color: #ffeb3b;
-  width: 100%;
-  text-align: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  padding: 10px 0; /* Reduzido pela metade */
-  font-size: 1.2em;
-  font-weight: bold;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-.fun-header h1 {
-  animation: fadeInOut 5s infinite;
-}
-
-/* Animação de troca de frases */
-@keyframes fadeInOut {
-  0% { opacity: 0; }
-  20% { opacity: 1; }
-  80% { opacity: 1; }
-  100% { opacity: 0; }
-}
-
-/* Ajuste na lista para alinhar e centralizar os cards */
 ul {
-  list-style-type: none; /* Remove os bullet points */
-  padding: 0; /* Remove espaçamento padrão */
-  margin: 80px auto 0; /* Centraliza os elementos e deixa espaço para o cabeçalho */
-  max-width: 1000px; /* Define uma largura máxima */
+  list-style-type: none;
+  padding: 0;
+  margin: 80px auto 0;
+  max-width: 1000px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center; /* Centraliza os cards */
+  justify-content: center;
+  padding-bottom: 100px;
 }
 
-/* Estilização dos cards de hábito */
 .habit-card {
-  background-color: #f4f4f4;  /* Cor de fundo */
-  border: 1px solid #ddd;      /* Borda sutil */
-  border-radius: 8px;          /* Cantos arredondados */
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
-  padding: 15px;               /* Espaçamento interno */
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
   transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
@@ -66,7 +38,7 @@ ul {
 }
 
 .habit-card:hover {
-  transform: translateY(-5px); /* Efeito de elevação ao passar o mouse */
+  transform: translateY(-5px);
 }
 
 .habit-card strong {
@@ -80,16 +52,14 @@ ul {
   margin: 5px 0;
 }
 
-/* Estilo para hábitos ativos */
 .habit-active {
-  background-color: #e0ffe0;  /* Verde claro */
+  background-color: #e0ffe0;
   border-left: 5px solid #4caf50;
   padding: 15px;
   border-radius: 5px;
   margin: 20px 0;
 }
 
-/* Botões */
 button {
   cursor: pointer;
   padding: 8px 12px;
@@ -101,7 +71,7 @@ button {
 }
 
 .start-btn {
-  background-color: #4caf50;  /* Verde para iniciar */
+  background-color: #4caf50;
 }
 
 .start-btn:hover {
@@ -109,7 +79,7 @@ button {
 }
 
 .end-btn {
-  background-color: #ff4d4d;  /* Vermelho para finalizar */
+  background-color: #ff4d4d;
 }
 
 .end-btn:hover {
@@ -117,7 +87,7 @@ button {
 }
 
 .delete-btn {
-  background-color: #ff0000;  /* Vermelho para deletar */
+  background-color: #ff0000;
   margin-top: 10px;
 }
 
@@ -130,7 +100,6 @@ button {
   color: #2c3e50;
 }
 
-/* Input de adição de hábito */
 .input-container {
   margin-top: 10px;
   text-align: center;
@@ -156,43 +125,61 @@ button {
   background-color: #1976D2;
 }
 
-/* Ajuste do título */
 h1 {
   text-align: center;
 }
 
-/* Estilo do botão de Adicionar Habit */
-.add-habit-btn {
-  background-color: #4caf50;  /* Cor verde de fundo */
-  color: transparent;  /* Texto invisível por padrão */
-  font-size: 20px;  /* Tamanho do ícone */
-  width: 50px;  /* Largura do botão */
-  height: 50px;  /* Altura do botão */
-  border-radius: 50%;  /* Forma circular */
+.add-habit-container {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
   display: flex;
   justify-content: center;
-  align-items: center;
+  width: 100%;
+}
+
+.add-habit-btn {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #45a049;
+  color: white;
+  font-size: 24px;
   border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-  position: relative;
 }
 
 .add-habit-btn:hover {
   background-color: #45a049;
 }
 
-.calendar-container{
-  display: flex;
-  margin-top: 30px;
-  align-items: center;
+.calendar-container {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsividade para dispositivos móveis */
 @media (max-width: 768px) {
-  ul {
-    flex-direction: column;
-    align-items: center;
+  .add-habit-btn {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    bottom: 75px;
+    right: 15px;
   }
 
   .habit-card {
