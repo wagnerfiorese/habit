@@ -3,7 +3,6 @@ import '../styles/styles.css';
 
 function Home() {
   const [habits, setHabits] = useState(() => {
-    // Recupera os hábitos do localStorage ao iniciar
     const storedHabits = localStorage.getItem('habits');
     return storedHabits ? JSON.parse(storedHabits) : {};
   });
@@ -12,7 +11,6 @@ function Home() {
   const [showInput, setShowInput] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
-  // Atualiza o localStorage sempre que os hábitos mudam
   useEffect(() => {
     localStorage.setItem('habits', JSON.stringify(habits));
   }, [habits]);
@@ -112,12 +110,12 @@ function Home() {
           <input
             type="text"
             maxLength="255"
-            placeholder="Digite o nome do Habit"
+            placeholder="Type your Habit"
             value={newHabit}
             onChange={(e) => setNewHabit(e.target.value)}
           />
           <button onClick={handleAddHabit} className="start-btn">
-            Salvar
+            Save
           </button>
         </div>
       )}
