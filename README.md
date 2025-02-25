@@ -40,7 +40,7 @@ To run the app locally, follow these steps:
 git clone https://github.com/wagnerfiorese/habit.git  
 
 **Navigate** to the project directory:  
-cd habit-tracker  
+cd habit
 
 **Install** dependencies:  
 npm install  
