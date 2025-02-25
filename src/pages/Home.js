@@ -1,43 +1,26 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/styles.css';
-import { database } from '../firebaseConfig';
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc } from 'firebase/firestore';
 
 function Home() {
-  const [habits, setHabits] = useState({});
+  const [habits, setHabits] = useState(() => {
+    // Recupera os hábitos do localStorage ao iniciar
+    const storedHabits = localStorage.getItem('habits');
+    return storedHabits ? JSON.parse(storedHabits) : {};
+  });
+
   const [newHabit, setNewHabit] = useState('');
   const [showInput, setShowInput] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0]);
 
-  const habitsCollectionRef = useMemo(() => collection(database, 'habits'), []);
-
+  // Atualiza o localStorage sempre que os hábitos mudam
   useEffect(() => {
-    const fetchHabits = async () => {
-      try {
-        const storedHabits = localStorage.getItem('habits');
-        if (storedHabits) {
-          setHabits(JSON.parse(storedHabits));
-        }
+    localStorage.setItem('habits', JSON.stringify(habits));
+  }, [habits]);
 
-        const querySnapshot = await getDocs(habitsCollectionRef);
-        const habitsData = {};
-        querySnapshot.forEach((doc) => {
-          habitsData[doc.id] = { id: doc.id, ...doc.data() };
-        });
-
-        setHabits(habitsData);
-        localStorage.setItem('habits', JSON.stringify(habitsData));
-      } catch (error) {
-        console.error("Erro ao buscar hábitos:", error);
-      }
-    };
-
-    fetchHabits();
-  }, [habitsCollectionRef]);
-
-  const handleAddHabit = async () => {
+  const handleAddHabit = () => {
     if (newHabit.trim() !== '') {
       const newHabitData = {
+        id: `habit-${Date.now()}`,
         name: newHabit,
         startTime: null,
         endTime: null,
@@ -46,70 +29,42 @@ function Home() {
         date: selectedDate
       };
 
-      const tempId = `temp-${Date.now()}`;
-      const newHabits = { ...habits, [tempId]: { id: tempId, ...newHabitData } };
-      setHabits(newHabits);
-      localStorage.setItem('habits', JSON.stringify(newHabits));
+      setHabits((prevHabits) => ({
+        ...prevHabits,
+        [newHabitData.id]: newHabitData
+      }));
+
       setNewHabit('');
       setShowInput(false);
-
-      try {
-        const docRef = await addDoc(habitsCollectionRef, newHabitData);
-        const finalHabits = { ...newHabits };
-        finalHabits[docRef.id] = { id: docRef.id, ...newHabitData };
-        delete finalHabits[tempId];
-
-        setHabits(finalHabits);
-        localStorage.setItem('habits', JSON.stringify(finalHabits));
-      } catch (error) {
-        console.error("Erro ao adicionar habit:", error);
-      }
     }
   };
 
-  const startHabit = async (id) => {
-    const now = new Date().toISOString();
-    const updatedHabits = { ...habits, [id]: { ...habits[id], startTime: now, isActive: true } };
-    setHabits(updatedHabits);
-    localStorage.setItem('habits', JSON.stringify(updatedHabits));
-
-    const habitRef = doc(database, 'habits', id);
-    try {
-      await updateDoc(habitRef, { startTime: now, isActive: true });
-    } catch (error) {
-      console.error("Erro ao iniciar habit:", error);
-    }
+  const startHabit = (id) => {
+    setHabits((prevHabits) => ({
+      ...prevHabits,
+      [id]: { ...prevHabits[id], startTime: new Date().toISOString(), isActive: true }
+    }));
   };
 
-  const endHabit = async (id) => {
-    const now = new Date().toISOString();
-    const startTime = new Date(habits[id].startTime);
-    const endTime = new Date(now);
-    const duration = Math.round((endTime - startTime) / 60000);
+  const endHabit = (id) => {
+    setHabits((prevHabits) => {
+      const startTime = new Date(prevHabits[id].startTime);
+      const endTime = new Date();
+      const duration = Math.round((endTime - startTime) / 60000);
 
-    const updatedHabits = { ...habits, [id]: { ...habits[id], endTime: now, duration, isActive: false } };
-    setHabits(updatedHabits);
-    localStorage.setItem('habits', JSON.stringify(updatedHabits));
-
-    const habitRef = doc(database, 'habits', id);
-    try {
-      await updateDoc(habitRef, { endTime: now, duration, isActive: false });
-    } catch (error) {
-      console.error("Erro ao finalizar habit:", error);
-    }
+      return {
+        ...prevHabits,
+        [id]: { ...prevHabits[id], endTime: endTime.toISOString(), duration, isActive: false }
+      };
+    });
   };
 
-  const deleteHabit = async (id) => {
-    const updatedHabits = { ...habits };
-    delete updatedHabits[id];
-    setHabits(updatedHabits);
-    localStorage.setItem('habits', JSON.stringify(updatedHabits));
-
-    try {
-      await deleteDoc(doc(database, 'habits', id));
-    } catch (error) {
-      console.error("Erro ao deletar habit:", error);
-    }
+  const deleteHabit = (id) => {
+    setHabits((prevHabits) => {
+      const updatedHabits = { ...prevHabits };
+      delete updatedHabits[id];
+      return updatedHabits;
+    });
   };
 
   return (
@@ -122,23 +77,23 @@ function Home() {
             <li key={id} className={`habit-item ${habit.endTime ? 'habit-card' : habit.isActive ? 'habit-active' : ''}`}>
               <strong>{habit.name}</strong>
               <div>
-                {habit.startTime && <p>Início: {new Date(habit.startTime).toLocaleTimeString()}</p>}
-                {habit.endTime && <p>Fim: {new Date(habit.endTime).toLocaleTimeString()}</p>}
-                {habit.duration !== null && <p>Duração: {habit.duration} minutos</p>}
+                {habit.startTime && <p>Start: {new Date(habit.startTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>}
+                {habit.endTime && <p>Finish: {new Date(habit.endTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>}
+                {habit.duration !== null && <p>Duration: {habit.duration} minutes</p>}
               </div>
               {!habit.endTime && habit.isActive && (
                 <button onClick={() => endHabit(id)} className="end-btn">
-                  Terminar Habit
+                  Finish Habit
                 </button>
               )}
               {!habit.isActive && !habit.endTime && (
                 <button onClick={() => startHabit(id)} className="start-btn">
-                  Iniciar Habit
+                  Start Habit
                 </button>
               )}
               {habit.endTime && (
                 <button onClick={() => deleteHabit(id)} className="delete-btn">
-                  Deletar
+                  Delete
                 </button>
               )}
             </li>
