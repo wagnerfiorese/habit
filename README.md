@@ -1,80 +1,86 @@
-Habit Tracker App
+**Habit Tracker App**
 
-📌 Overview
+📌 **Overview**
 
 The Habit Tracker App is a simple yet effective tool designed to help users track their daily habits. The app allows users to create, start, and finish habits while keeping a record of their duration. It utilizes localStorage to persist data across sessions.
 
-✨ Features
 
-Add new habits with a specific date.
+✨ **Features**
 
-Start and finish habits, tracking their duration.
+**Add** new habits with a specific date.
 
-View and manage habits based on the selected date.
+**Start** and finish habits, tracking their duration.
 
-Fully responsive UI.
+**View and manage** habits based on the selected date.
 
-Data stored locally using localStorage.
+**Fully responsive UI**.
 
-🛠️ Technologies Used
+Data stored **locally** using localStorage.
 
-React - Component-based UI.
 
-JavaScript (ES6+) - Core logic and functionality.
+🛠️ **Technologies Used**
 
-HTML5 & CSS3 - Styling and layout.
+**React** - Component-based UI.
 
-🚀 Installation
+**JavaScript (ES6+)** - Core logic and functionality.
+
+**HTML5 & CSS3** - Styling and layout.
+
+
+🚀 **Installation**
 
 To run the app locally, follow these steps:
 
-Clone the repository:
+**Clone the repository:**
 
-git clone https://github.com/your-username/habit-tracker.git
+git clone https://github.com/wagnerfiorese/habit.git
 
-Navigate to the project directory:
+
+**Navigate** to the project directory:
 
 cd habit-tracker
 
-Install dependencies:
+
+**Install** dependencies:
 
 npm install
 
-Start the development server:
+
+**Start** the development server:
 
 npm start
 
-📸 Screenshots
 
-Add screenshots of your app here.
 
-📌 How to Use
 
-Click the + button to add a new habit.
+📌 **How to Use**
 
-Select the date for the habit.
+Click the **+ button** to add a new habit.
 
-Click Start Habit to begin tracking time.
+**Select the date** for the habit.
 
-Click Finish Habit when done.
+**Click Start Habit** to begin tracking time.
 
-View the total duration of each habit.
+**Click Finish Habit** when done.
 
-Delete completed habits if needed.
+View the total **duration** of each habit.
 
-📝 Future Improvements
+**Delete** completed habits if needed.
 
-Add analytics for habit tracking.
 
-Implement dark mode.
+📝 **Future Improvements**
 
-Improve animations and UI/UX.
+Add **analytics** for habit tracking.
+
+Implement **dark mode**.
+
 
 🤝 Contributing
 
-Feel free to fork this project and submit pull requests. Any contributions are highly appreciated!
+**Feel free** to fork this project and submit pull requests. **Any contributions are highly appreciated!**
 
-📜 License
 
-This project is licensed under the MIT License.
+📜 **License**
+
+This project is licensed under the **MIT License**.
 
